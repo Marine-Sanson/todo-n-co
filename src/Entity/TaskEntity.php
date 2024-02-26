@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: TaskEntityRepository::class)]
 class TaskEntity
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
