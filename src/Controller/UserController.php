@@ -29,7 +29,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/users/create', name: 'user_create')]
-    public function create(Request $request): RedirectResponse 
+    public function create(Request $request): Response|RedirectResponse 
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -48,7 +48,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/users/{id}/edit', name: 'user_edit')]
-    public function edit(User $user, Request $request): RedirectResponse 
+    public function edit(User $user, Request $request): Response|RedirectResponse 
     {
         $form = $this->createForm(UserType::class, $user);
 
