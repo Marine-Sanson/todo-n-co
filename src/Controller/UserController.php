@@ -37,7 +37,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->userService->register($user, $user->getPassword());
+
+            $this->userService->register($user, $form->get('password')->getData());
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
 
