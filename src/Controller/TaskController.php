@@ -8,6 +8,7 @@ use App\Service\TaskService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
@@ -17,13 +18,13 @@ class TaskController extends AbstractController
     {}
 
     #[Route('/tasks', name: 'task_list')]
-    public function list()
+    public function list(): Response
     {
         return $this->render('task/list.html.twig', ['tasks' => $this->taskService->getAllTasks()]);
     }
 
     #[Route('/tasks/create', name: 'task_create')]
-    public function create(Request $request)
+    public function create(Request $request): Response|RedirectResponse
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -42,7 +43,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
-    public function edit(Task $task, Request $request)
+    public function edit(Task $task, Request $request): Response|RedirectResponse
     {
         $form = $this->createForm(TaskType::class, $task);
 
@@ -63,7 +64,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/toggle', name: 'task_toggle')]
-    public function taskIsDone(Task $task)
+    public function taskIsDone(Task $task): RedirectResponse
     {
         $task->setIsDone(!$task->isDone());
         $this->taskService->saveTask($task);
@@ -74,7 +75,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/delete', name: 'task_delete')]
-    public function deleteTask(Task $task)
+    public function deleteTask(Task $task): RedirectResponse
     {
         $this->taskService->deleteTask($task);
 

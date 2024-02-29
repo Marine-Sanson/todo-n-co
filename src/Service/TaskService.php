@@ -24,10 +24,10 @@ class TaskService
         
     }
 
-    public function deleteTask(Task $task)
+    public function deleteTask(Task $task): void
     {
 
-        return $this->taskRepository->deleteTask($task);
+        $this->taskRepository->deleteTask($task);
 
     }
 }
