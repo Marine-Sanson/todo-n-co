@@ -55,7 +55,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $savedUser = $this->userService->register($user, $user->getPassword());
+            $this->userService->register($user, $user->getPassword());
 
             $this->addFlash('success', "L'utilisateur a bien été modifié");
 

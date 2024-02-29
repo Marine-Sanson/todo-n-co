@@ -2,27 +2,47 @@
 
 namespace App\Repository;
 
-use App\Entity\TaskEntity;
+use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TaskEntity>
+ * @extends ServiceEntityRepository<Task>
  *
- * @method TaskEntity|null find($id, $lockMode = null, $lockVersion = null)
- * @method TaskEntity|null findOneBy(array $criteria, array $orderBy = null)
- * @method TaskEntity[]    findAll()
- * @method TaskEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Task|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Task|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Task[]    findAll()
+ * @method Task[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TaskEntityRepository extends ServiceEntityRepository
+class TaskRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TaskEntity::class);
+        parent::__construct($registry, Task::class);
     }
 
+    public function saveTask(Task $task): Task
+    {
+
+        $this->getEntityManager()->persist($task);
+        $this->getEntityManager()->flush();
+
+        return $task;
+
+    }
+
+
+    public function deleteTask(Task $task): void
+    {
+
+        $this->getEntityManager()->remove($task);
+        $this->getEntityManager()->flush();
+
+    }
+
+
     //    /**
-    //     * @return TaskEntity[] Returns an array of TaskEntity objects
+    //     * @return Task[] Returns an array of Task objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -36,7 +56,7 @@ class TaskEntityRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?TaskEntity
+    //    public function findOneBySomeField($value): ?Task
     //    {
     //        return $this->createQueryBuilder('t')
     //            ->andWhere('t.exampleField = :val')
