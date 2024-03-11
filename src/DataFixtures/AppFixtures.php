@@ -36,6 +36,16 @@ class AppFixtures extends Fixture
         $manager->persist($admin);
         $manager->flush();
 
+        $defaultUser = (new User())
+            ->setUsername('user')
+            ->setEmail('user@ex.com');
+
+        $password = $this->userPasswordHasher->hashPassword($defaultUser, 'mdpass');
+        $defaultUser->setPassword($password);
+
+        $manager->persist($defaultUser);
+        $manager->flush();
+
         for ($i=0; $i<11; $i++){
             $domain = $this->faker->domainWord();
             $tld = $this->faker->tld();
