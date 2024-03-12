@@ -53,8 +53,6 @@ class TaskController extends AbstractController
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
     public function edit(Task $task, Request $request): Response|RedirectResponse
     {
-        $user = $this->getUser();
-
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -76,8 +74,6 @@ class TaskController extends AbstractController
     #[Route('/tasks/{id}/toggle', name: 'task_toggle')]
     public function taskIsDone(Task $task): RedirectResponse
     {        
-        $user = $this->getUser();
-
         $task->setIsDone(!$task->isDone());
         $this->taskService->saveTask($task);
 
