@@ -36,7 +36,8 @@ class UserService
         return $this->userRepository->saveUser($user);
     }
 
-    public function editUser($user): User{
+    public function editUser(User $user): User
+    {
         return $this->userRepository->saveUser($user);
     }
 }
