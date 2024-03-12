@@ -29,6 +29,7 @@
         "symfony/mime": "7.0.*",
         "symfony/monolog-bundle": "^3.10",
         "symfony/notifier": "7.0.*",
+        "symfony/password-hasher": "7.0.*",
         "symfony/process": "7.0.*",
         "symfony/property-access": "7.0.*",
         "symfony/property-info": "7.0.*",
@@ -97,8 +98,10 @@
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^8.0",
         "doctrine/doctrine-fixtures-bundle": "^3.5",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/php-code-coverage": "^11.0",
+        "phpunit/phpunit": "^11.0",
         "symfony/browser-kit": "7.0.*",
         "symfony/css-selector": "7.0.*",
         "symfony/debug-bundle": "7.0.*",
