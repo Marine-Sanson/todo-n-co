@@ -17,6 +17,7 @@
                     <th>#</th>
                     <th>Nom d'utilisateur</th>
                     <th>Adresse d'utilisateur</th>
+                    <th>Role</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -26,6 +27,14 @@
                         <th scope="row">{{ loop.index }}</th>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
+                        <td>{% if (user.roles[0] is defined and user.roles[0] == 'ROLE_ADMIN' or user.roles[1] is defined and user.roles[1] == 'ROLE_ADMIN') %}
+                                Admin
+                            {% elseif (user.roles[0] is defined and user.roles[0] == 'ROLE_USER' or user.roles[1] is defined and user.roles[1] == 'ROLE_USER') %}
+                                Utilisateur                            
+                            {% else %}
+                                Pas de role défini
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ path('user_edit', {'id' : user.id}) }}" class="btn btn-success btn-sm">Edit</a>
                         </td>
