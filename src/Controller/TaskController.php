@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use DateTimeImmutable;
 use App\Service\TaskService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,25 +27,34 @@ class TaskController extends AbstractController
     #[Route('/tasks/create', name: 'task_create')]
     public function create(Request $request): Response|RedirectResponse
     {
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->saveTask($task);
-
-            $this->addFlash('success', 'La tâche a été bien été ajoutée.');
-
-            return $this->redirectToRoute('task_list');
+        $user = $this->getUser();
+        if ($user){
+            $task = new Task();
+            $form = $this->createForm(TaskType::class, $task);
+    
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                $task->setCreatedAt(new DateTimeImmutable());
+                $task->setUser($user);
+                $this->taskService->saveTask($task);
+    
+                $this->addFlash('success', 'La tâche a été bien été ajoutée.');
+    
+                return $this->redirectToRoute('task_list');
+            }
+    
+            return $this->render('task/create.html.twig', ['form' => $form->createView()]);
         }
+        return $this->redirectToRoute('app_login');
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
 
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
     public function edit(Task $task, Request $request): Response|RedirectResponse
     {
+        $user = $this->getUser();
+
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -65,7 +75,9 @@ class TaskController extends AbstractController
 
     #[Route('/tasks/{id}/toggle', name: 'task_toggle')]
     public function taskIsDone(Task $task): RedirectResponse
-    {
+    {        
+        $user = $this->getUser();
+
         $task->setIsDone(!$task->isDone());
         $this->taskService->saveTask($task);
 

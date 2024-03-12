@@ -45,26 +45,15 @@ class AppFixtures extends Fixture
                 ->setUsername($username)
                 ->setEmail($username.'@'.$domain.'.'.$tld);
 
-            $password = $this->userPasswordHasher->hashPassword($user, $this->faker->password());
+            $password = $this->userPasswordHasher->hashPassword($user, 'mdpass');
             $user->setPassword($password);
+
+            $this->addReference('user' . $i, $user);
 
             $manager->persist($user);
             $manager->flush();
         }
 
-        for ($j=0; $j<15; $j++){
-        
-            $date = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('-6 months')->format('Y-m-d H:i:s'));
-
-            $task = (new Task())
-                ->setTitle($this->faker->sentence())
-                ->setContent($this->faker->text())
-                ->setCreatedAt($date)
-                ->setIsDone(rand(0, 1));
-
-            $manager->persist($task);
-            $manager->flush();
-        }
-
     }
+
 }
