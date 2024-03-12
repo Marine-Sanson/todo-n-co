@@ -28,9 +28,9 @@ class TaskFixtures extends Fixture
 
         for ($j=0; $j<15; $j++){
 
-            $i = rand(0, 12);
+            $i = rand(0, 11);
             $user = null;
-            if ($i < 12) {
+            if ($i < 10) {
                 $user = $this->getReference('user'.$i);
             }                
 

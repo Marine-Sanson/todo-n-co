@@ -28,7 +28,8 @@ class AppFixtures extends Fixture
 
         $admin = (new User())
             ->setUsername('admin')
-            ->setEmail('admin@ex.com');
+            ->setEmail('admin@ex.com')
+            ->setRoles(['ROLE_ADMIN']);
 
         $password = $this->userPasswordHasher->hashPassword($admin, 'mdpass');
         $admin->setPassword($password);
@@ -38,7 +39,8 @@ class AppFixtures extends Fixture
 
         $defaultUser = (new User())
             ->setUsername('user')
-            ->setEmail('user@ex.com');
+            ->setEmail('user@ex.com')
+            ->setRoles(['ROLE_USER']);
 
         $password = $this->userPasswordHasher->hashPassword($defaultUser, 'mdpass');
         $defaultUser->setPassword($password);
@@ -50,20 +52,28 @@ class AppFixtures extends Fixture
             $domain = $this->faker->domainWord();
             $tld = $this->faker->tld();
             $username = $this->faker->userName();
+            $k = rand(0, 10);
+            
+            if ($k === 10) {
+                $role = ['ROLE_ADMIN'];
+            }
+
+            if ($k <= 9) {
+                $role = ['ROLE_USER'];
+            }
 
             $user = (new User())
                 ->setUsername($username)
-                ->setEmail($username.'@'.$domain.'.'.$tld);
+                ->setEmail($username.'@'.$domain.'.'.$tld)
+                ->setRoles($role);
 
             $password = $this->userPasswordHasher->hashPassword($user, 'mdpass');
             $user->setPassword($password);
 
             $this->addReference('user' . $i, $user);
-
             $manager->persist($user);
             $manager->flush();
         }
-
     }
 
 }
