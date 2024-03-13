@@ -8,9 +8,11 @@ use App\Repository\TaskRepository;
 class TaskService
 {
 
-    public function __construct(
-        private readonly TaskRepository $taskRepository
-    ) {}
+
+    public function __construct(private readonly TaskRepository $taskRepository)
+    {
+
+    }
 
     public function getAllTasks(): array
     {
@@ -32,5 +34,6 @@ class TaskService
         $this->taskRepository->deleteTask($task);
 
     }
+
 
 }

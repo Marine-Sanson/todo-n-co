@@ -22,6 +22,7 @@ class UserServiceTest extends WebTestCase
 
     protected function setUp(): void
     {
+
         self::bootKernel();
 
         $this->entityManager = static::$kernel->getContainer()->get('doctrine')
@@ -30,10 +31,12 @@ class UserServiceTest extends WebTestCase
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
 
         $this->userService = new UserService($this->entityManager->getRepository(User::class), $this->userPasswordHasher);
+
     }
 
     public function testGetAllUsers(): void
     {
+
         // Given
 
         // When
@@ -41,10 +44,12 @@ class UserServiceTest extends WebTestCase
 
         // Then
         $this->assertContainsOnlyInstancesOf(User::class, $users);
+
     }
 
     public function testRegister(): void
     {
+
         // Given
         $user = (new User())
             ->setUsername('new username')
@@ -65,11 +70,14 @@ class UserServiceTest extends WebTestCase
         $users = $this->entityManager->getRepository(User::class)->findAll();
         $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail@ex.com');
         $this->assertContains($userRegistered, $users, "This user isn't known");
+
     }
 
     protected function tearDown(): void
     {
+
         $this->entityManager->close();
+
     }
 
 }

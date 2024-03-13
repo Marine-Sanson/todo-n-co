@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TaskType extends AbstractType
 {
 
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
@@ -30,5 +31,6 @@ class TaskType extends AbstractType
         );
 
     }
+
 
 }

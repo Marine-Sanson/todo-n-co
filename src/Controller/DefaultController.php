@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
+
+
     #[Route('/', name: 'homepage')]
     public function index(): Response
     {
@@ -15,5 +17,6 @@ class DefaultController extends AbstractController
         return $this->render('default/index.html.twig');
 
     }
+
 
 }

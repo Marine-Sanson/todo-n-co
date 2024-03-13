@@ -12,6 +12,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class AppFixtures extends Fixture
 {
 
+
     /**
      * Summary of faker
      *
@@ -19,7 +20,12 @@ class AppFixtures extends Fixture
      */
     public Generator $faker;
 
-    public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher){}
+
+    public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
+    {
+
+    }
+
 
     public function load(ObjectManager $manager): void
     {
@@ -73,8 +79,9 @@ class AppFixtures extends Fixture
             $this->addReference('user'.$i, $user);
             $manager->persist($user);
             $manager->flush();
-        }
+        }//end for
 
     }
+
 
 }

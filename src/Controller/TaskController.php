@@ -15,8 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TaskController extends AbstractController
 {
 
+
     public function __construct(private readonly TaskService $taskService)
-    {}
+    {
+
+    }
 
     #[Route('/tasks', name: 'task_list')]
     public function list(): Response
@@ -104,5 +107,6 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
 
     }
+
 
 }

@@ -15,9 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
 
-    public function __construct(private readonly UserService $userService)
-    {}
 
+    public function __construct(private readonly UserService $userService)
+    {
+
+    }
 
     #[Route('/users', name: 'user_list')]
     public function list(): Response
@@ -71,5 +73,6 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
 
     }
+
 
 }

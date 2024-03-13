@@ -21,6 +21,7 @@ class TaskServiceTest extends KernelTestCase
 
     protected function setUp(): void
     {
+
         $kernel = self::bootKernel();
 
         $this->entityManager = $kernel->getContainer()
@@ -33,30 +34,38 @@ class TaskServiceTest extends KernelTestCase
 
     public function testGetAllTasks(): void
     {
+
         // Given
 
         // When
         $tasks = $this->taskService->getAllTasks();
+
         // Then
         $this->assertContainsOnlyInstancesOf(Task::class, $tasks);
+
     }
-    
+
     public function testSaveTask(): void
     {
+
         // Given
         $task = (new Task())
             ->setCreatedAt(new DateTimeImmutable())
             ->setTitle('task title')
             ->setContent('task content')
             ->setIsDone(false);
+
         // When
         $savedTask = $this->taskService->saveTask($task);
+
         // Then
         $this->assertInstanceOf(Task::class, $savedTask);
+
     }
 
     public function testDeleteTask(): void
     {
+
         // Given
         $task = $this->entityManager->getRepository(Task::class)->findOneByTitle('task title');
         $id = $task->getId();
@@ -68,11 +77,14 @@ class TaskServiceTest extends KernelTestCase
         $tasks = $this->entityManager->getRepository(Task::class)->findAll();
         $taskDeleted = $this->entityManager->getRepository(Task::class)->findOneById($id);
         $this->assertNotContains($taskDeleted, $tasks, "This task isn't known");
+
     }
 
     protected function tearDown(): void
     {
+
         $this->entityManager->close();
+
     }
 
 }
