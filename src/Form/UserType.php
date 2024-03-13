@@ -12,8 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             ->add(
                 'username', TextType::class, [
@@ -24,7 +27,7 @@ class UserType extends AbstractType
                 ]
             )
             ->add(
-            'email', EmailType::class, [
+                'email', EmailType::class, [
                     'attr' => [
                         'class' => 'form-control mb-3',
                         'readonly' => true,
@@ -41,14 +44,20 @@ class UserType extends AbstractType
                     'expanded' => true,
                     'multiple' => true,
                 ]
-            )
-        ;
+            );
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class,
+            ]
+        );
+
     }
+
+
 }

@@ -13,6 +13,7 @@ class UserTest extends WebTestCase
 
     protected function setUp(): void
     {
+
         self::bootKernel();
 
         $this->entityManager = static::$kernel->getContainer()->get('doctrine')
@@ -22,6 +23,7 @@ class UserTest extends WebTestCase
 
     public function testGetId(): void
     {
+
         // Given
         $user = $this->entityManager->getRepository(User::class)->findOneByEmail('user@ex.com');
 
@@ -30,10 +32,12 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertIsInt($id);
+
     }
 
     public function testGetUsername(): void
     {
+
         // Given
         $expectedUsername = "Username";
         $user = (new User())
@@ -44,10 +48,12 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertEquals($expectedUsername, $username);
+
     }
 
     public function testGetEmail(): void
     {
+
         // Given
         $expectedEmail = "email@exemple.com";
         $user = (new User())
@@ -58,10 +64,12 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertEquals($expectedEmail, $email);
+
     }
 
     public function testGetUserIdentifier(): void
     {
+
         // Given
         $expectedEmail = "email@exemple.com";
         $user = (new User())
@@ -72,10 +80,12 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertEquals($expectedEmail, $userIdentifier);
+
     }
 
     public function testGetRoles(): void
     {
+
         // Given
         $expectedRoles = ['ROLE_USER'];
         $user = (new User())
@@ -86,10 +96,12 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertEquals($expectedRoles, $roles);
+
     }
 
     public function testGetPassword(): void
     {
+
         // Given
         $expectedPassword = "password";
         $user = (new User())
@@ -100,6 +112,7 @@ class UserTest extends WebTestCase
 
         // Then
         $this->assertEquals($expectedPassword, $password);
+
     }
 
 }

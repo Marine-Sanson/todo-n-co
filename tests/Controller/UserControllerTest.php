@@ -10,9 +10,11 @@ class UserControllerTest extends WebTestCase
 {
     public function testSomething(): void
     {
+
         $this->assertTrue(true);
+
     }
-    
+
     // public function testCreate(): void
     // {
         // Given

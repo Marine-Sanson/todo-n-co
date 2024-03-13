@@ -16,9 +16,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TaskRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
+
         parent::__construct($registry, Task::class);
+
     }
 
     public function saveTask(Task $task): Task
@@ -65,4 +69,6 @@ class TaskRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
 }

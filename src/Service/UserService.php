@@ -9,14 +9,19 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserService
 {
 
+
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly UserPasswordHasherInterface $userPasswordHasher
-    ) {}
+    ) {
     
+    }
+
     public function getAllUsers(): array
     {
+
         return $this->userRepository->findAll();
+
     }
 
     public function register(User $user, string $password): User
@@ -34,10 +39,15 @@ class UserService
         );
 
         return $this->userRepository->saveUser($user);
+
     }
 
     public function editUser(User $user): User
     {
+
         return $this->userRepository->saveUser($user);
+
     }
+
+
 }
