@@ -3,16 +3,15 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Task;
 use App\Entity\User;
 use Faker\Generator;
-use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+
     /**
      * Summary of faker
      *
@@ -24,6 +23,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
         $this->faker = Factory::create('fr_FR');
 
         $admin = (new User())
@@ -48,12 +48,12 @@ class AppFixtures extends Fixture
         $manager->persist($defaultUser);
         $manager->flush();
 
-        for ($i=0; $i<11; $i++){
+        for ($i = 0; $i < 11; $i++) {
             $domain = $this->faker->domainWord();
             $tld = $this->faker->tld();
             $username = $this->faker->userName();
             $k = rand(0, 10);
-            
+
             if ($k === 10) {
                 $role = ['ROLE_ADMIN'];
             }
@@ -70,10 +70,11 @@ class AppFixtures extends Fixture
             $password = $this->userPasswordHasher->hashPassword($user, 'mdpass');
             $user->setPassword($password);
 
-            $this->addReference('user' . $i, $user);
+            $this->addReference('user'.$i, $user);
             $manager->persist($user);
             $manager->flush();
         }
+
     }
 
 }

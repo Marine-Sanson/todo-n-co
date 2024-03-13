@@ -14,6 +14,7 @@ set_exception_handler([new ErrorHandler(), 'handleException']);
 
 class TaskServiceTest extends KernelTestCase
 {
+
     private TaskService $taskService;
 
     private EntityManager $entityManager;
@@ -25,7 +26,7 @@ class TaskServiceTest extends KernelTestCase
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
-        
+
         $this->taskService = new TaskService($this->entityManager->getRepository(Task::class));
 
     }

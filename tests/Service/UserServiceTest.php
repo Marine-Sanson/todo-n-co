@@ -15,7 +15,7 @@ class UserServiceTest extends WebTestCase
 {
 
     private UserService $userService;
-    
+
     private EntityManager $entityManager;
 
     private UserPasswordHasherInterface $userPasswordHasher;
