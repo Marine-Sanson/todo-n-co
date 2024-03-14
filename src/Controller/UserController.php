@@ -16,11 +16,21 @@ class UserController extends AbstractController
 {
 
 
+    /**
+     * Summary of __construct
+     *
+     * @param UserService $userService UserService
+     */
     public function __construct(private readonly UserService $userService)
     {
 
     }
 
+    /**
+     * Summary of list
+     *
+     * @return Response
+     */
     #[Route('/users', name: 'user_list')]
     public function list(): Response
     {
@@ -33,6 +43,13 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * Summary of create
+     *
+     * @param Request $request Request
+     *
+     * @return Response|RedirectResponse
+     */
     #[Route('/users/create', name: 'user_create')]
     public function create(Request $request): Response|RedirectResponse
     {
@@ -54,6 +71,14 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * Summary of edit
+     *
+     * @param User $user User
+     * @param Request $request Request
+     *
+     * @return Response|RedirectResponse
+     */
     #[Route('/users/{id}/edit', name: 'user_edit')]
     public function edit(User $user, Request $request): Response|RedirectResponse
     {

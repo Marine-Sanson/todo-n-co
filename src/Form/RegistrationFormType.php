@@ -18,7 +18,14 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 class RegistrationFormType extends AbstractType
 {
 
-
+    /**
+     * Summary of buildForm
+     *
+     * @param FormBuilderInterface $builder FormBuilderInterface
+     * @param array $options options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
@@ -79,6 +86,13 @@ class RegistrationFormType extends AbstractType
 
     }
 
+    /**
+     * Summary of configureOptions
+     *
+     * @param OptionsResolver $resolver resolver
+     *
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
 

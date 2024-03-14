@@ -55,7 +55,7 @@ class TaskVoter extends Voter
 
 
     /**
-     * Summary of authenticate
+     * Summary of supports
      *
      * @param string $attribute Attribute
      * @param mixed  $task      task
@@ -71,7 +71,7 @@ class TaskVoter extends Voter
         }
 
         // Only vote on `Post` objects.
-        if (!$subject  instanceof Task) {
+        if (!$subject instanceof Task) {
             return false;
         }
 
@@ -81,7 +81,7 @@ class TaskVoter extends Voter
 
 
     /**
-     * Summary of authenticate
+     * Summary of voteOnAttribute
      *
      * @param string         $attribute Attribute
      * @param mixed          $task      task

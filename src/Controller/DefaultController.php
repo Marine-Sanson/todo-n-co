@@ -9,7 +9,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class DefaultController extends AbstractController
 {
 
-
+    /**
+     * Summary of index
+     *
+     * @return Response
+     */
     #[Route('/', name: 'homepage')]
     public function index(): Response
     {

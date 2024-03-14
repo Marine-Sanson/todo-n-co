@@ -22,11 +22,23 @@ class TaskFixtures extends Fixture
     public Generator $faker;
 
 
+    /**
+     * Summary of __construct
+     *
+     * @param UserPasswordHasherInterface $userPasswordHasher UserPasswordHasherInterface
+     */
     public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
     {
 
     }
 
+    /**
+     * Summary of load
+     *
+     * @param ObjectManager $manager ObjectManager
+     *
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
 
