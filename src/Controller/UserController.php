@@ -74,7 +74,7 @@ class UserController extends AbstractController
     /**
      * Summary of edit
      *
-     * @param User $user User
+     * @param User    $user    User
      * @param Request $request Request
      *
      * @return Response|RedirectResponse
