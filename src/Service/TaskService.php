@@ -10,13 +10,24 @@ class TaskService
 {
 
 
+    /**
+     * Summary of function __construct
+     *
+     * @param TaskRepository $taskRepository TaskRepository
+     * @param UserService $userService UserService
+     */
     public function __construct(
         private readonly TaskRepository $taskRepository,
         private readonly UserService $userService
-    ){
+    ) {
 
     }
 
+    /**
+     * Summary of getAllTasks
+     *
+     * @return array<Task>
+     */
     public function getAllTasks(): array
     {
 
@@ -24,6 +35,13 @@ class TaskService
 
     }
 
+    /**
+     * Summary of saveTask
+     *
+     * @param Task $task Task
+     *
+     * @return Task|null
+     */
     public function saveTask(Task $task): ?Task
     {
 
@@ -31,6 +49,13 @@ class TaskService
 
     }
 
+    /**
+     * Summary of deleteTask
+     *
+     * @param Task $task Task
+     *
+     * @return void
+     */
     public function deleteTask(Task $task): void
     {
 

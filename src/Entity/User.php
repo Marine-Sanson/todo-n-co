@@ -16,12 +16,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
-
+    /**
+     * Summary of id
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Summary of username
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 25, unique: true)]
     #[Assert\NotBlank(message: 'Vous devez saisir un nom d\'utilisateur')]
     #[Assert\Length(
@@ -32,6 +41,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $username = null;
 
+    /**
+     * Summary of email
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Vous devez saisir une adresse email')]
     #[Assert\Length(
@@ -44,7 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     /**
-     * @var list<string> The user roles
+     * Summary of roles
+     *
+     * @var array
      */
     #[ORM\Column]
     private array $roles = [];
@@ -55,10 +71,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    /**
+     * Summary of tasks
+     *
+     * @var Collection<Task>
+     */
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'user')]
     private Collection $tasks;
 
 
+    /**
+     * Summary of function __construct
+     */
     public function __construct()
     {
 
@@ -66,7 +90,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
-
+    /**
+     * Summary of function getId
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
 
@@ -74,6 +102,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function getUsername
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
 
@@ -81,6 +114,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function setUsername
+     *
+     * @param string $username username
+     *
+     * @return static
+     */
     public function setUsername(string $username): static
     {
 
@@ -90,6 +130,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function getEmail
+     *
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
 
@@ -97,6 +142,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function setEmail
+     *
+     * @param string $email email
+     *
+     * @return static
+     */
     public function setEmail(string $email): static
     {
 
@@ -156,6 +208,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function setPassword
+     *
+     * @param string $password password
+     *
+     * @return static
+     */
     public function setPassword(string $password): static
     {
 
@@ -186,6 +245,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+    /**
+     * Summary of function addTask
+     *
+     * @param Task $task Task
+     *
+     * @return static
+     */
     public function addTask(Task $task): static
     {
 
@@ -198,6 +264,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
+    /**
+     * Summary of function removeTask
+     *
+     * @param Task $task Task
+     *
+     * @return static
+     */
     public function removeTask(Task $task): static
     {
 

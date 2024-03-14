@@ -17,11 +17,21 @@ class TaskController extends AbstractController
 {
 
 
+    /**
+     * Summary of __construct
+     *
+     * @param TaskService $taskService TaskService
+     */
     public function __construct(private readonly TaskService $taskService)
     {
 
     }
 
+    /**
+     * Summary of list
+     *
+     * @return Response
+     */
     #[Route('/tasks', name: 'task_list')]
     public function list(): Response
     {
@@ -30,6 +40,13 @@ class TaskController extends AbstractController
 
     }
 
+    /**
+     * Summary of create
+     *
+     * @param Request $request Request
+     *
+     * @return Response|RedirectResponse
+     */
     #[Route('/tasks/create', name: 'task_create')]
     public function create(Request $request): Response|RedirectResponse
     {
@@ -59,6 +76,14 @@ class TaskController extends AbstractController
 
     }
 
+    /**
+     * Summary of edit
+     *
+     * @param Task $task Task
+     * @param Request $request Request
+     *
+     * @return Response|RedirectResponse
+     */
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
     // #[IsGranted('TASK_EDIT', 'task', 'Seule la personne ayant créé une tache peut la modifier')]
     public function edit(Task $task, Request $request): Response|RedirectResponse
@@ -90,6 +115,13 @@ class TaskController extends AbstractController
 
     }
 
+    /**
+     * Summary of taskIsDone
+     *
+     * @param Task $task Task
+     *
+     * @return RedirectResponse
+     */
     #[Route('/tasks/{id}/toggle', name: 'task_toggle')]
     public function taskIsDone(Task $task): RedirectResponse
     {
@@ -103,6 +135,13 @@ class TaskController extends AbstractController
 
     }
 
+    /**
+     * Summary of deleteTask
+     *
+     * @param Task $task Task
+     *
+     * @return RedirectResponse
+     */
     #[Route('/tasks/{id}/delete', name: 'task_delete')]
     #[IsGranted('TASK_DELETE', 'task')]
     public function deleteTask(Task $task): RedirectResponse
