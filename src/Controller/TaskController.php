@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
@@ -59,9 +60,15 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
+    // #[IsGranted('TASK_EDIT', 'task', 'Seule la personne ayant créé une tache peut la modifier')]
     public function edit(Task $task, Request $request): Response|RedirectResponse
     {
-
+        // $check = false;
+        // if($this->getUser()->getId() === $task->getUser()->getId()) {
+        //     $check = true;
+        // }
+        // dd($check);
+        $this->denyAccessUnlessGranted('TASK_EDIT', $task, 'Seule la personne ayant créé une tache peut la modifier');
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -97,6 +104,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/delete', name: 'task_delete')]
+    #[IsGranted('TASK_DELETE', 'task')]
     public function deleteTask(Task $task): RedirectResponse
     {
 
