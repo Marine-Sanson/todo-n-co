@@ -3,14 +3,17 @@
 namespace App\Service;
 
 use App\Entity\Task;
+use App\Entity\User;
 use App\Repository\TaskRepository;
 
 class TaskService
 {
 
 
-    public function __construct(private readonly TaskRepository $taskRepository)
-    {
+    public function __construct(
+        private readonly TaskRepository $taskRepository,
+        private readonly UserService $userService
+    ){
 
     }
 
