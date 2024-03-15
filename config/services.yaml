@@ -25,3 +25,7 @@ services:
     security.user_password_hasher:
         class: Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher
         public: true
+
+    # need for unit test. Find solution to avoid this
+    App\Service\UserService:
+        public: true

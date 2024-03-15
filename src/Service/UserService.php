@@ -74,5 +74,18 @@ class UserService
 
     }
 
+    /**
+     * Summary of deleteUser
+     *
+     * @param User $user User
+     *
+     * @return void
+     */
+    public function deleteUser(User $user): void
+    {
+
+        $this->userRepository->deleteUser($user);
+
+    }
 
 }

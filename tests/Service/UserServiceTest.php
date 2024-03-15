@@ -52,8 +52,10 @@ class UserServiceTest extends WebTestCase
 
         // Given
         $user = (new User())
-            ->setUsername('new username')
-            ->setEmail('newemail@ex.com');
+            ->setUsername('newtestuser')
+            ->setEmail('newtestuser@ex.com')
+            ->setRoles(['ROLE_ADMIN']);
+    
         $password = 'password';
 
         $user->setPassword(
@@ -68,9 +70,42 @@ class UserServiceTest extends WebTestCase
 
         // Then
         $users = $this->entityManager->getRepository(User::class)->findAll();
-        $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail@ex.com');
+        $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
         $this->assertContains($userRegistered, $users, "This user isn't known");
 
+    }
+
+    public function testEditUser(): void
+    {
+
+        // Given
+        $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
+        $newrole = ['ROLE_USER'];
+        $userRegistered->setRoles($newrole);
+
+        // When
+        $this->userService->editUser($userRegistered);
+
+        // Then
+        $userEdited = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
+        $this->assertEquals($newrole, $userEdited->getRoles(), "This user wasn't changed");
+
+    }
+
+    public function testDeleteUser(): void
+    {
+    
+        // Given
+        $user = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
+
+        // When
+        $this->userService->deleteUser($user);
+
+        // Then
+        $userDeleted = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
+        $this->assertEmpty($userDeleted);
+
+        
     }
 
     protected function tearDown(): void

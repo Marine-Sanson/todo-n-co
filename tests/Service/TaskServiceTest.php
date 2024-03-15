@@ -5,6 +5,7 @@ namespace App\Tests\Service;
 use App\Entity\Task;
 use DateTimeImmutable;
 use App\Service\TaskService;
+use App\Service\UserService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\ErrorHandler\ErrorHandler;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -16,6 +17,7 @@ class TaskServiceTest extends KernelTestCase
 {
 
     private TaskService $taskService;
+    private UserService $userService;
 
     private EntityManager $entityManager;
 
@@ -28,7 +30,10 @@ class TaskServiceTest extends KernelTestCase
             ->get('doctrine')
             ->getManager();
 
-        $this->taskService = new TaskService($this->entityManager->getRepository(Task::class));
+        $userService = $kernel->getContainer()
+            ->get('App\Service\UserService');
+
+        $this->taskService = new TaskService($this->entityManager->getRepository(Task::class), $userService);
 
     }
 

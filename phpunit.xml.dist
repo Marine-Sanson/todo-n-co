@@ -15,11 +15,13 @@
     </testsuite>
   </testsuites>
   <extensions>
-    <!-- <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/> -->
   </extensions>
   <source>
     <include>
       <directory suffix=".php">src</directory>
     </include>
+    <exclude>
+      <directory>src/DataFixtures</directory>
+    </exclude>
   </source>
 </phpunit>

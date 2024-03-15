@@ -1,16 +1,27 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests;
 
-use PHPUnit\Framework\TestCase;
+use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TaskControllerTest extends TestCase
+class TaskControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testList(): void
     {
 
-        $this->assertTrue(true);
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        // retrieve the test user
+        $testUser = $userRepository->findOneByUsername('admin');
+
+        // simulate $testUser being logged in
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/tasks');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Liste des tâches');
 
     }
-
 }

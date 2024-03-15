@@ -3,15 +3,30 @@
 namespace App\Tests\Controller;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManager;
+use App\Controller\UserController;
 use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+
+    public function testList(): void
     {
 
-        $this->assertTrue(true);
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        // retrieve the test user
+        $testUser = $userRepository->findOneByUsername('admin');
+
+        // simulate $testUser being logged in
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/users');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
 
     }
 
