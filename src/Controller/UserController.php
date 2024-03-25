@@ -60,7 +60,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = $this->userService->dealRole($form->get("role")->getData());
+            $role = $this->userService->dealRole($form->get("roles")->getData());
             $user->setRoles([$role]);
 
             $this->userService->register($user, $form->get('password')->getData());
