@@ -29,3 +29,6 @@ services:
     # need for unit test. Find solution to avoid this
     App\Service\UserService:
         public: true
+    App\Repository\TaskRepository:
+        public: true
+

@@ -88,11 +88,7 @@ class TaskController extends AbstractController
     // #[IsGranted('TASK_EDIT', 'task', 'Seule la personne ayant créé une tache peut la modifier')]
     public function edit(Task $task, Request $request): Response|RedirectResponse
     {
-        // $check = false;
-        // if($this->getUser()->getId() === $task->getUser()->getId()) {
-        //     $check = true;
-        // }
-        // dd($check);
+
         $this->denyAccessUnlessGranted('TASK_EDIT', $task, 'Seule la personne ayant créé une tache peut la modifier');
         $form = $this->createForm(TaskType::class, $task);
 

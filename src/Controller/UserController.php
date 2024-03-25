@@ -60,6 +60,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $role = $this->userService->dealRole($form->get("role")->getData());
+            $user->setRoles([$role]);
+
             $this->userService->register($user, $form->get('password')->getData());
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
@@ -83,11 +86,14 @@ class UserController extends AbstractController
     public function edit(User $user, Request $request): Response|RedirectResponse
     {
 
-        $form = $this->createForm(UserType::class, $user);
+        $userForm = $this->createForm(UserType::class, $user);
 
-        $form->handleRequest($request);
+        $userForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $role = $this->userService->dealRole($userForm->get("roles")->getData());
+            $user->setRoles([$role]);
+
             $this->userService->editUser($user);
 
             $this->addFlash('success', "L'utilisateur a bien été modifié");
@@ -95,7 +101,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+        return $this->render('user/edit.html.twig', ['userForm' => $userForm->createView(), 'user' => $user]);
 
     }
 

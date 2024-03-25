@@ -49,6 +49,7 @@ class UserType extends AbstractType
                             'class' => 'form-control mb-3',
                         ],
                     'choices' => ['ADMIN' => 'ROLE_ADMIN', 'UTILISATEUR' => 'ROLE_USER'],
+                    'mapped' => true,
                     'expanded' => true,
                     'multiple' => true,
                 ]
