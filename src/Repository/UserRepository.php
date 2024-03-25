@@ -56,6 +56,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     }
 
+    /**
+     * Summary of deleteUser
+     *
+     * @param User $user User
+     *
+     * @return void
+     */
+    public function deleteUser(User $user): void
+    {
+
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
+
+    }
+
 
     //    /**
     //     * @return User[] Returns an array of User objects

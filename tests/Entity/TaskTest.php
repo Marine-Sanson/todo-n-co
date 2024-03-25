@@ -3,12 +3,40 @@
 namespace App\Tests\Entity;
 
 use App\Entity\Task;
+use App\Entity\User;
 use DateTimeImmutable;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class TaskTest extends KernelTestCase
 {
 
+    private EntityManager $entityManager;
+    
+    private UserPasswordHasherInterface $userPasswordHasher;
+
+
+    /**
+     * Function setUp
+     */
+    protected function setUp(): void
+    {
+
+        self::bootKernel();
+
+        $this->entityManager = static::$kernel
+            ->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
+
+        }
+
+    /**
+     * Function testGetCreatedAt
+     */
     public function testGetCreatedAt(): void
     {
 
@@ -25,6 +53,9 @@ class TaskTest extends KernelTestCase
 
     }
 
+    /**
+     * Function testGetTitle
+     */
     public function testGetTitle(): void
     {
 
@@ -41,6 +72,9 @@ class TaskTest extends KernelTestCase
 
     }
 
+    /**
+     * Function testGetContent
+     */
     public function testGetContent(): void
     {
 
@@ -57,6 +91,9 @@ class TaskTest extends KernelTestCase
 
     }
 
+    /**
+     * Function testIsDone
+     */
     public function testIsDone(): void
     {
 
@@ -73,6 +110,9 @@ class TaskTest extends KernelTestCase
 
     }
 
+    /**
+     * Function testIsNotDone
+     */
     public function testIsNotDone(): void
     {
 
@@ -86,6 +126,54 @@ class TaskTest extends KernelTestCase
 
         // Then
         $this->assertEquals($expectedIsNotDone, $isNotDone);
+
+    }
+
+    /**
+     * Function testGetUser
+     */
+    public function testGetUser(): void
+    {
+
+        // Given
+        $task = $this->entityManager->getRepository(Task::class)->findOneByTitle('testtask');
+
+        // When
+        $taskUser = $task->getUser();
+
+        // Then
+        $this->assertInstanceOf(User::class, $taskUser);
+
+    }
+
+    public function testSetUser(): void
+    {
+
+        // Given
+        $user = (new User())
+            ->setUsername('new username 2')
+            ->setEmail('newemail2@ex.com');
+        $password = 'password';
+
+        $user->setPassword(
+            $this->userPasswordHasher->hashPassword(
+                $user,
+                $password
+            )
+        );
+
+        $task = (new Task())
+        ->setCreatedAt(new DateTimeImmutable())
+        ->setTitle('task 2 title')
+        ->setContent('task content')
+        ->setIsDone(false);
+
+        // When
+        $task->setUser($user);
+
+        // Then
+        $taskUser = $task->getUser();
+        $this->assertInstanceOf(User::class, $taskUser);
 
     }
 

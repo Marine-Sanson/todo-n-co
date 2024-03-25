@@ -19,8 +19,7 @@ class UserRepositoryTest extends KernelTestCase
     {
         self::bootKernel();
 
-        $this->entityManager = static::$kernel->getContainer()->get('doctrine')
-            ->getManager();
+        $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
 
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
     }
@@ -41,7 +40,9 @@ class UserRepositoryTest extends KernelTestCase
         // Given
         $user = (new User())
             ->setUsername('new username 2')
-            ->setEmail('newemail2@ex.com');
+            ->setEmail('newemail2@ex.com')
+            ->setRoles(['ROLE_USER']);
+
         $password = 'password';
 
         $user->setPassword(
@@ -58,6 +59,34 @@ class UserRepositoryTest extends KernelTestCase
         $users = $this->entityManager->getRepository(User::class)->findAll();
         $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail2@ex.com');
         $this->assertContains($userRegistered, $users, "This user isn't known");
+    }
+
+    public function testUpgradePassword(): void
+    {
+        // Given
+        $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
+        $newpass = 'newpass';
+
+        // When
+        $this->entityManager->getRepository(User::class)->upgradePassword($testuser, $newpass);
+
+        //then
+        $this->assertEquals($newpass, $testuser->getPassword());
+
+    }
+
+    public function testDeleteUser(): void
+    {
+        // Given
+        $user = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail2@ex.com');
+
+        // When
+        $this->entityManager->getRepository(User::class)->deleteUser($user);
+
+        // Then
+        $userDeleted = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail2@ex.com');
+        $this->assertEmpty($userDeleted);
+
     }
 
     protected function tearDown(): void

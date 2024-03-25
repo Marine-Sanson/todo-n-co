@@ -103,6 +103,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Summary of function setId
+     *
+     * @param int $id Id
+     *
+     * @return static
+     */
+    public function setId(string $id): static
+    {
+
+        $this->id = $id;
+
+        return $this;
+
+    }
+
+    /**
      * Summary of function getUsername
      *
      * @return string|null

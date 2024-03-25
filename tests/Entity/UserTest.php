@@ -2,7 +2,9 @@
 
 namespace App\Tests\Entity;
 
+use App\Entity\Task;
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -25,13 +27,15 @@ class UserTest extends WebTestCase
     {
 
         // Given
-        $user = $this->entityManager->getRepository(User::class)->findOneByEmail('user@ex.com');
+        $expectedId = 9999999999;
+        $user = (new User())
+        ->setId($expectedId);
 
         // When
         $id = $user->getId();
 
         // Then
-        $this->assertIsInt($id);
+        $this->assertEquals($expectedId, $id);
 
     }
 
@@ -114,5 +118,70 @@ class UserTest extends WebTestCase
         $this->assertEquals($expectedPassword, $password);
 
     }
+
+    public function testGetTasks(): void
+    {
+
+        // Given
+        $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
+
+        // When
+        $tasks = $testuser->getTasks();
+
+        // Then
+        $this->assertContainsOnlyInstancesOf(Task::class, $tasks);
+
+    }
+
+    public function testAddTask(): void
+    {
+
+        // Given
+        $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
+
+        $testdate = new DateTimeImmutable;
+        $countTesttasksBefore = count($testuser->getTasks()) + 1;
+
+        $newtask = (new Task())
+        ->setTitle('newtask')
+        ->setContent('newtask content')
+        ->setCreatedAt($testdate)
+        ->setIsDone(0);
+
+        // When
+        $testuser->addTask($newtask);
+
+        // Then
+        $testtasksAfter = $testuser->getTasks();
+        $this->assertCount($countTesttasksBefore, $testtasksAfter);
+
+    }
+
+    public function testRemoveTask(): void
+    {
+
+        // Given
+        $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
+
+        $testdate = new DateTimeImmutable;
+
+        $newtask = (new Task())
+        ->setTitle('newtask')
+        ->setContent('newtask content')
+        ->setCreatedAt($testdate)
+        ->setIsDone(0);
+        $testuser->addTask($newtask);
+
+        $countTesttasksBefore = count($testuser->getTasks()) - 1;
+
+        // When
+        $testuser->removeTask($newtask);
+
+        // Then
+        $testtasksAfter = $testuser->getTasks();
+        $this->assertCount($countTesttasksBefore, $testtasksAfter);
+
+    }
+
 
 }

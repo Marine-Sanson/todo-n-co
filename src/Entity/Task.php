@@ -67,7 +67,7 @@ class Task
      *
      * @var User|null
      */
-    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    #[ORM\ManyToOne(inversedBy: 'tasks', cascade:['persist'])]
     private ?User $user = null;
 
     /**

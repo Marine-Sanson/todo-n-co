@@ -3,16 +3,27 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\UserService;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
+
+    /**
+     * Summary of __construct
+     *
+     * @param UserService $userService UserService
+     */
+    public function __construct(private readonly UserService $userService)
+    {
+
+    }
 
     /**
      * Summary of register
@@ -28,15 +39,15 @@ class RegistrationController extends AbstractController
     {
 
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        $registrationForm = $this->createForm(RegistrationFormType::class, $user);
+        $registrationForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($registrationForm->isSubmitted() && $registrationForm->isValid()) {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $registrationForm->get('plainPassword')->getData()
                 )
             );
 
@@ -49,7 +60,7 @@ class RegistrationController extends AbstractController
 
         return $this->render(
             'registration/register.html.twig', [
-                'registrationForm' => $form,
+                'registrationForm' => $registrationForm,
             ]
         );
 
