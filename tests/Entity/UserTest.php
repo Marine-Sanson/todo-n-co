@@ -140,7 +140,7 @@ class UserTest extends WebTestCase
         $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
 
         $testdate = new DateTimeImmutable;
-        $countTesttasksBefore = count($testuser->getTasks()) + 1;
+        $countTesttasksBefore = (count($testuser->getTasks()) + 1);
 
         $newtask = (new Task())
         ->setTitle('newtask')
@@ -172,7 +172,7 @@ class UserTest extends WebTestCase
         ->setIsDone(0);
         $testuser->addTask($newtask);
 
-        $countTesttasksBefore = count($testuser->getTasks()) - 1;
+        $countTesttasksBefore = (count($testuser->getTasks()) - 1);
 
         // When
         $testuser->removeTask($newtask);

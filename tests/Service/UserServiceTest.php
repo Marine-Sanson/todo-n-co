@@ -105,7 +105,6 @@ class UserServiceTest extends WebTestCase
         $userDeleted = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
         $this->assertEmpty($userDeleted);
 
-        
     }
 
     protected function tearDown(): void

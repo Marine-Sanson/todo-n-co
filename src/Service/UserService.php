@@ -91,7 +91,7 @@ class UserService
     public function dealRole(array $role): string
     {
         $length = count($role);
-        for ($i = 0; $i <$length; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             if ($role[$i] === "ROLE_ADMIN") {
                 return 'ROLE_ADMIN';
             }

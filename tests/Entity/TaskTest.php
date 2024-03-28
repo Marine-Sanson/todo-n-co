@@ -32,7 +32,7 @@ class TaskTest extends KernelTestCase
 
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
 
-        }
+    }
 
     /**
      * Function testGetCreatedAt

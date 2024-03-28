@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-
 class UserRepositoryTest extends KernelTestCase
 {
 
@@ -17,15 +16,18 @@ class UserRepositoryTest extends KernelTestCase
 
     protected function setUp(): void
     {
+
         self::bootKernel();
 
         $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
 
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
+
     }
 
     public function testFindAll(): void
     {
+
         // Given
 
         // When
@@ -33,10 +35,12 @@ class UserRepositoryTest extends KernelTestCase
 
         // Then
         $this->assertContainsOnlyInstancesOf(User::class, $users);
+
     }
 
     public function testSaveUser(): void
     {
+
         // Given
         $user = (new User())
             ->setUsername('new username 2')
@@ -59,10 +63,12 @@ class UserRepositoryTest extends KernelTestCase
         $users = $this->entityManager->getRepository(User::class)->findAll();
         $userRegistered = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail2@ex.com');
         $this->assertContains($userRegistered, $users, "This user isn't known");
+
     }
 
     public function testUpgradePassword(): void
     {
+
         // Given
         $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
         $newpass = 'newpass';
@@ -77,6 +83,7 @@ class UserRepositoryTest extends KernelTestCase
 
     public function testDeleteUser(): void
     {
+
         // Given
         $user = $this->entityManager->getRepository(User::class)->findOneByEmail('newemail2@ex.com');
 
@@ -91,7 +98,9 @@ class UserRepositoryTest extends KernelTestCase
 
     protected function tearDown(): void
     {
+
         $this->entityManager->close();
+
     }
 
 }

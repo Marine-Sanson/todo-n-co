@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
             $this->addReference('user'.$i, $user);
             $manager->persist($user);
             $manager->flush();
-        } //end for
+        } // end for
 
     }
 
