@@ -24,6 +24,7 @@ class TaskControllerTest extends WebTestCase
 
     private Router $urlGenerator;
 
+
     protected function setUp(): void
     {
 
@@ -38,6 +39,7 @@ class TaskControllerTest extends WebTestCase
         $this->urlGenerator = $this->client->getContainer()->get('router.default');
 
     }
+
 
     public function testList(): void
     {
@@ -59,6 +61,7 @@ class TaskControllerTest extends WebTestCase
 
     }
 
+
     public function testCreateTask()
     {
 
@@ -66,7 +69,6 @@ class TaskControllerTest extends WebTestCase
         $this->client->loginUser($user);
 
         $oldCount = count($this->taskRepository->findAll());
-
 
         $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_create'));
         
@@ -91,6 +93,7 @@ class TaskControllerTest extends WebTestCase
 
     }
 
+
     public function testCreateTaskWithNoOneConnected(): void
     {
 
@@ -107,6 +110,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertCount($oldCount, $allTasks);
 
     }
+
 
     public function testEditTask()
     {
@@ -138,6 +142,7 @@ class TaskControllerTest extends WebTestCase
 
     }
 
+
     public function testtaskIsDone(): void
     {
 
@@ -158,6 +163,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertEquals(!$oldIsDone, $task->isDone());
 
     }
+
 
     public function testDeleteTask(): void
     {

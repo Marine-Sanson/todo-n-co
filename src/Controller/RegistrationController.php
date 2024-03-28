@@ -15,6 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class RegistrationController extends AbstractController
 {
 
+
     /**
      * Summary of __construct
      *
@@ -24,6 +25,7 @@ class RegistrationController extends AbstractController
     {
 
     }
+
 
     /**
      * Summary of register

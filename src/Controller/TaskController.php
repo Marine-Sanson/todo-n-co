@@ -27,6 +27,7 @@ class TaskController extends AbstractController
 
     }
 
+
     /**
      * Summary of list
      *
@@ -39,6 +40,7 @@ class TaskController extends AbstractController
         return $this->render('task/list.html.twig', ['tasks' => $this->taskService->getAllTasks()]);
 
     }
+
 
     /**
      * Summary of create
@@ -53,7 +55,7 @@ class TaskController extends AbstractController
 
         $user = $this->getUser();
 
-        if (isset($user)) {
+        if ($user) {
             $task = new Task();
             $form = $this->createForm(TaskType::class, $task);
 
@@ -75,6 +77,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('app_login');
 
     }
+
 
     /**
      * Summary of edit
@@ -111,6 +114,7 @@ class TaskController extends AbstractController
 
     }
 
+
     /**
      * Summary of taskIsDone
      *
@@ -130,6 +134,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
 
     }
+
 
     /**
      * Summary of deleteTask

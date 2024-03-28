@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class RegistrationFormTypeTest extends KernelTestCase
 {
 
+
     public function testSubmitValidData(): void
     {
 
@@ -38,5 +39,6 @@ class RegistrationFormTypeTest extends KernelTestCase
         $this->assertInstanceOf(User::class, $entity);
 
     }
+
 
 }

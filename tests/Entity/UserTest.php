@@ -13,6 +13,7 @@ class UserTest extends WebTestCase
 
     private EntityManager $entityManager;
 
+
     protected function setUp(): void
     {
 
@@ -22,6 +23,7 @@ class UserTest extends WebTestCase
             ->getManager();
 
     }
+
 
     public function testGetId(): void
     {
@@ -39,6 +41,7 @@ class UserTest extends WebTestCase
 
     }
 
+
     public function testGetUsername(): void
     {
 
@@ -54,6 +57,7 @@ class UserTest extends WebTestCase
         $this->assertEquals($expectedUsername, $username);
 
     }
+
 
     public function testGetEmail(): void
     {
@@ -71,6 +75,7 @@ class UserTest extends WebTestCase
 
     }
 
+
     public function testGetUserIdentifier(): void
     {
 
@@ -86,6 +91,7 @@ class UserTest extends WebTestCase
         $this->assertEquals($expectedEmail, $userIdentifier);
 
     }
+
 
     public function testGetRoles(): void
     {
@@ -103,6 +109,7 @@ class UserTest extends WebTestCase
 
     }
 
+
     public function testGetPassword(): void
     {
 
@@ -119,6 +126,7 @@ class UserTest extends WebTestCase
 
     }
 
+
     public function testGetTasks(): void
     {
 
@@ -133,6 +141,7 @@ class UserTest extends WebTestCase
 
     }
 
+
     public function testAddTask(): void
     {
 
@@ -142,11 +151,11 @@ class UserTest extends WebTestCase
         $testdate = new DateTimeImmutable;
         $countTesttasksBefore = (count($testuser->getTasks()) + 1);
 
-        $newtask = (new Task())
-        ->setTitle('newtask')
-        ->setContent('newtask content')
-        ->setCreatedAt($testdate)
-        ->setIsDone(0);
+            $newtask = (new Task())
+            ->setTitle('newtask')
+            ->setContent('newtask content')
+            ->setCreatedAt($testdate)
+            ->setIsDone(0);
 
         // When
         $testuser->addTask($newtask);
@@ -156,6 +165,7 @@ class UserTest extends WebTestCase
         $this->assertCount($countTesttasksBefore, $testtasksAfter);
 
     }
+
 
     public function testRemoveTask(): void
     {

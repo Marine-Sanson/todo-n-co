@@ -14,6 +14,7 @@ class UserRepositoryTest extends KernelTestCase
 
     private UserPasswordHasherInterface $userPasswordHasher;
 
+
     protected function setUp(): void
     {
 
@@ -24,6 +25,7 @@ class UserRepositoryTest extends KernelTestCase
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
 
     }
+
 
     public function testFindAll(): void
     {
@@ -37,6 +39,7 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertContainsOnlyInstancesOf(User::class, $users);
 
     }
+
 
     public function testSaveUser(): void
     {
@@ -66,6 +69,7 @@ class UserRepositoryTest extends KernelTestCase
 
     }
 
+
     public function testUpgradePassword(): void
     {
 
@@ -80,6 +84,7 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertEquals($newpass, $testuser->getPassword());
 
     }
+
 
     public function testDeleteUser(): void
     {
@@ -96,11 +101,13 @@ class UserRepositoryTest extends KernelTestCase
 
     }
 
+
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

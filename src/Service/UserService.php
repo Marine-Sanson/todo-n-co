@@ -9,6 +9,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserService
 {
 
+
     /**
      * Summary of function __construct
      *
@@ -22,6 +23,7 @@ class UserService
 
     }
 
+
     /**
      * Summary of getAllUsers
      *
@@ -33,6 +35,7 @@ class UserService
         return $this->userRepository->findAll();
 
     }
+
 
     /**
      * Summary of register
@@ -60,6 +63,7 @@ class UserService
 
     }
 
+
     /**
      * Summary of editUser
      *
@@ -73,6 +77,7 @@ class UserService
         return $this->userRepository->saveUser($user);
 
     }
+
 
     /**
      * Summary of deleteUser
@@ -88,6 +93,7 @@ class UserService
 
     }
 
+
     public function dealRole(array $role): string
     {
         $length = count($role);
@@ -100,4 +106,6 @@ class UserService
         return 'ROLE_USER';
 
     }
+
+
 }

@@ -20,6 +20,7 @@ class TaskServiceTest extends KernelTestCase
 
     private EntityManager $entityManager;
 
+
     protected function setUp(): void
     {
 
@@ -39,6 +40,7 @@ class TaskServiceTest extends KernelTestCase
 
     }
 
+
     public function testGetAllTasks(): void
     {
 
@@ -51,6 +53,7 @@ class TaskServiceTest extends KernelTestCase
         $this->assertContainsOnlyInstancesOf(Task::class, $tasks);
 
     }
+
 
     public function testSaveTask(): void
     {
@@ -70,6 +73,7 @@ class TaskServiceTest extends KernelTestCase
 
     }
 
+
     public function testDeleteTask(): void
     {
 
@@ -87,11 +91,13 @@ class TaskServiceTest extends KernelTestCase
 
     }
 
+
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

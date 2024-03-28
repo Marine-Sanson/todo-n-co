@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Task;
-use App\Entity\User;
 use App\Repository\TaskRepository;
 
 class TaskService
@@ -23,6 +22,7 @@ class TaskService
 
     }
 
+
     /**
      * Summary of getAllTasks
      *
@@ -34,6 +34,7 @@ class TaskService
         return $this->taskRepository->findAll();
 
     }
+
 
     /**
      * Summary of saveTask
@@ -48,6 +49,7 @@ class TaskService
         return $this->taskRepository->saveTask($task);
 
     }
+
 
     /**
      * Summary of deleteTask

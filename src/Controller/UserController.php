@@ -26,6 +26,7 @@ class UserController extends AbstractController
 
     }
 
+
     /**
      * Summary of list
      *
@@ -42,6 +43,7 @@ class UserController extends AbstractController
         );
 
     }
+
 
     /**
      * Summary of create
@@ -73,6 +75,7 @@ class UserController extends AbstractController
         return $this->render('user/create.html.twig', ['form' => $form->createView()]);
 
     }
+
 
     /**
      * Summary of edit

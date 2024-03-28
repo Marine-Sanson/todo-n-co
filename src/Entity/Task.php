@@ -70,6 +70,7 @@ class Task
     #[ORM\ManyToOne(inversedBy: 'tasks', cascade:['persist'])]
     private ?User $user = null;
 
+
     /**
      * Summary of function getId
      *
@@ -82,6 +83,7 @@ class Task
 
     }
 
+
     /**
      * Summary of function getCreatedAt
      *
@@ -93,6 +95,7 @@ class Task
         return $this->createdAt;
 
     }
+
 
     /**
      * Summary of function setCreatedAt
@@ -110,6 +113,7 @@ class Task
 
     }
 
+
     /**
      * Summary of function getTitle
      *
@@ -121,6 +125,7 @@ class Task
         return $this->title;
 
     }
+
 
     /**
      * Summary of function setTitle
@@ -138,6 +143,7 @@ class Task
 
     }
 
+
     /**
      * Summary of function getContent
      *
@@ -149,6 +155,7 @@ class Task
         return $this->content;
 
     }
+
 
     /**
      * Summary of function setContent
@@ -166,6 +173,7 @@ class Task
 
     }
 
+
     /**
      * Summary of function isDone
      *
@@ -177,6 +185,7 @@ class Task
         return $this->isDone;
 
     }
+
 
     /**
      * Summary of function setIsDone
@@ -194,6 +203,7 @@ class Task
 
     }
 
+
     /**
      * Summary of function getUser
      *
@@ -205,6 +215,7 @@ class Task
         return $this->user;
 
     }
+
 
     /**
      * Summary of function setUser

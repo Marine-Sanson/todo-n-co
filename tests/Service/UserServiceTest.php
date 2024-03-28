@@ -20,6 +20,7 @@ class UserServiceTest extends WebTestCase
 
     private UserPasswordHasherInterface $userPasswordHasher;
 
+
     protected function setUp(): void
     {
 
@@ -34,6 +35,7 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
     public function testGetAllUsers(): void
     {
 
@@ -46,6 +48,7 @@ class UserServiceTest extends WebTestCase
         $this->assertContainsOnlyInstancesOf(User::class, $users);
 
     }
+
 
     public function testRegister(): void
     {
@@ -75,6 +78,7 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
     public function testEditUser(): void
     {
 
@@ -92,9 +96,10 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
     public function testDeleteUser(): void
     {
-    
+
         // Given
         $user = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
 
@@ -107,11 +112,13 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

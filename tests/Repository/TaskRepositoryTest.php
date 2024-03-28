@@ -12,6 +12,7 @@ class TaskRepositoryTest extends KernelTestCase
 
     private EntityManager $entityManager;
 
+
     protected function setUp(): void
     {
 
@@ -21,6 +22,7 @@ class TaskRepositoryTest extends KernelTestCase
             ->getManager();
 
     }
+
 
     public function testSaveTask(): void
     {
@@ -42,6 +44,7 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
     public function testDeleteTask(): void
     {
 
@@ -59,6 +62,7 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
     public function testFindAll(): void
     {
 
@@ -72,11 +76,13 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

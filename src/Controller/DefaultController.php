@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class DefaultController extends AbstractController
 {
 
+
     /**
      * Summary of index
      *

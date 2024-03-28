@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class DefaultControllerTest extends WebTestCase
 {
 
+
     public function testIndex(): void
     {
 
@@ -17,5 +18,6 @@ class DefaultControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Bienvenue');
 
     }
+
 
 }

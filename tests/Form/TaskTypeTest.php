@@ -9,6 +9,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class TaskTypeTest extends TypeTestCase
 {
+
+
     public function testSubmitValidData(): void
     {
 
@@ -39,6 +41,7 @@ class TaskTypeTest extends TypeTestCase
 
     }
 
+
     public function testCustomFormView(): void
     {
 
@@ -56,5 +59,6 @@ class TaskTypeTest extends TypeTestCase
         $this->assertSame($formData, $view->vars['data']);
 
     }
+
 
 }

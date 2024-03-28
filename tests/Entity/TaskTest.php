@@ -34,6 +34,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testGetCreatedAt
      */
@@ -52,6 +53,7 @@ class TaskTest extends KernelTestCase
         $this->assertEquals($expectedCreatedAt, $date);
 
     }
+
 
     /**
      * Function testGetTitle
@@ -72,6 +74,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testGetContent
      */
@@ -90,6 +93,7 @@ class TaskTest extends KernelTestCase
         $this->assertEquals($expectedContent, $content);
 
     }
+
 
     /**
      * Function testIsDone
@@ -110,6 +114,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testIsNotDone
      */
@@ -129,6 +134,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testGetUser
      */
@@ -145,6 +151,7 @@ class TaskTest extends KernelTestCase
         $this->assertInstanceOf(User::class, $taskUser);
 
     }
+
 
     public function testSetUser(): void
     {
@@ -176,5 +183,6 @@ class TaskTest extends KernelTestCase
         $this->assertInstanceOf(User::class, $taskUser);
 
     }
+
 
 }
