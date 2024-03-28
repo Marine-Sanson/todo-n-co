@@ -7,10 +7,16 @@ use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Form\Forms;
 
-class UserTypeTest extends KernelTestCase 
+class UserTypeTest extends KernelTestCase
 {
+
+
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
+
         $formFactory = Forms::createFormFactory();
 
         $formData = [
@@ -36,8 +42,8 @@ class UserTypeTest extends KernelTestCase
         $this->assertTrue($form->isSynchronized());
         $this->assertInstanceOf(User::class, $expected);
         $this->assertInstanceOf(User::class, $entity);
-        // check that $model was modified as expected when the form was submitted
-        //$this->assertEquals($expected, $entity);
+
     }
+
 
 }

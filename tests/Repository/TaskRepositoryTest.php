@@ -10,8 +10,17 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class TaskRepositoryTest extends KernelTestCase
 {
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
+
+    /**
+     * Function setUp
+     */
     protected function setUp(): void
     {
 
@@ -22,6 +31,10 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
+    /**
+     * Function testSaveTask
+     */
     public function testSaveTask(): void
     {
 
@@ -42,6 +55,10 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
+    /**
+     * Function testDeleteTask
+     */
     public function testDeleteTask(): void
     {
 
@@ -59,6 +76,10 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
+    /**
+     * Function testFindAll
+     */
     public function testFindAll(): void
     {
 
@@ -72,11 +93,16 @@ class TaskRepositoryTest extends KernelTestCase
 
     }
 
+
+    /**
+     * Function tearDown
+     */
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

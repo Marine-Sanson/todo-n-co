@@ -57,6 +57,7 @@ class UserType extends AbstractType
 
     }
 
+
     /**
      * Summary of configureOptions
      *

@@ -12,8 +12,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class TaskTest extends KernelTestCase
 {
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
-    
+
+    /**
+     * Summary of userPasswordHasher
+     *
+     * @var UserPasswordHasherInterface
+     */
     private UserPasswordHasherInterface $userPasswordHasher;
 
 
@@ -32,7 +42,8 @@ class TaskTest extends KernelTestCase
 
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
 
-        }
+    }
+
 
     /**
      * Function testGetCreatedAt
@@ -53,6 +64,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testGetTitle
      */
@@ -71,6 +83,7 @@ class TaskTest extends KernelTestCase
         $this->assertEquals($expectedTitle, $title);
 
     }
+
 
     /**
      * Function testGetContent
@@ -91,6 +104,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testIsDone
      */
@@ -109,6 +123,7 @@ class TaskTest extends KernelTestCase
         $this->assertEquals($expectedIsDone, $isDone);
 
     }
+
 
     /**
      * Function testIsNotDone
@@ -129,6 +144,7 @@ class TaskTest extends KernelTestCase
 
     }
 
+
     /**
      * Function testGetUser
      */
@@ -146,6 +162,10 @@ class TaskTest extends KernelTestCase
 
     }
 
+
+    /**
+     * Summary of function testSetUser
+     */
     public function testSetUser(): void
     {
 
@@ -163,10 +183,10 @@ class TaskTest extends KernelTestCase
         );
 
         $task = (new Task())
-        ->setCreatedAt(new DateTimeImmutable())
-        ->setTitle('task 2 title')
-        ->setContent('task content')
-        ->setIsDone(false);
+            ->setCreatedAt(new DateTimeImmutable())
+            ->setTitle('task 2 title')
+            ->setContent('task content')
+            ->setIsDone(false);
 
         // When
         $task->setUser($user);
@@ -176,5 +196,6 @@ class TaskTest extends KernelTestCase
         $this->assertInstanceOf(User::class, $taskUser);
 
     }
+
 
 }

@@ -3,15 +3,20 @@
 namespace App\Tests\Form;
 
 use App\Entity\User;
-use App\Form\UserType;
 use Symfony\Component\Form\Forms;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class RegistrationFormTypeTest extends KernelTestCase 
+class RegistrationFormTypeTest extends KernelTestCase
 {
+
+
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
+
         $formFactory = Forms::createFormFactory();
 
         $formData = [
@@ -22,7 +27,6 @@ class RegistrationFormTypeTest extends KernelTestCase
         ];
 
         $entity = new User();
-        // $model will retrieve data from the form submission; pass it as the second argument
         $form = $formFactory->create(RegistrationFormType::class, $entity);
 
         $expected = (new User())
@@ -30,17 +34,14 @@ class RegistrationFormTypeTest extends KernelTestCase
             ->setEmail('email@test.com')
             ->setPassword('password')
             ->setRoles(['ROLE_USER']);
-        // ...populate $expected properties with the data stored in $formData
 
-        // submit the data to the form directly
         $form->submit($formData);
 
-        // This check ensures there are no transformation failures
         $this->assertTrue($form->isSynchronized());
         $this->assertInstanceOf(User::class, $expected);
         $this->assertInstanceOf(User::class, $entity);
-        // check that $model was modified as expected when the form was submitted
-        //$this->assertEquals($expected, $entity);
+
     }
+
 
 }

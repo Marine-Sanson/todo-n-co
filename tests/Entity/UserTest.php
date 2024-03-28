@@ -11,8 +11,17 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class UserTest extends WebTestCase
 {
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
+
+    /**
+     * Function setUp
+     */
     protected function setUp(): void
     {
 
@@ -23,6 +32,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetId
+     */
     public function testGetId(): void
     {
 
@@ -39,6 +52,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetUsername
+     */
     public function testGetUsername(): void
     {
 
@@ -55,6 +72,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetEmail
+     */
     public function testGetEmail(): void
     {
 
@@ -71,6 +92,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetUserIdentifier
+     */
     public function testGetUserIdentifier(): void
     {
 
@@ -87,6 +112,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetRoles
+     */
     public function testGetRoles(): void
     {
 
@@ -103,6 +132,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetPassword
+     */
     public function testGetPassword(): void
     {
 
@@ -119,6 +152,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testGetTasks
+     */
     public function testGetTasks(): void
     {
 
@@ -133,6 +170,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testAddTask
+     */
     public function testAddTask(): void
     {
 
@@ -140,13 +181,13 @@ class UserTest extends WebTestCase
         $testuser = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
 
         $testdate = new DateTimeImmutable;
-        $countTesttasksBefore = count($testuser->getTasks()) + 1;
+        $countTesttasksBefore = (count($testuser->getTasks()) + 1);
 
-        $newtask = (new Task())
-        ->setTitle('newtask')
-        ->setContent('newtask content')
-        ->setCreatedAt($testdate)
-        ->setIsDone(0);
+            $newtask = (new Task())
+            ->setTitle('newtask')
+            ->setContent('newtask content')
+            ->setCreatedAt($testdate)
+            ->setIsDone(0);
 
         // When
         $testuser->addTask($newtask);
@@ -157,6 +198,10 @@ class UserTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testRemoveTask
+     */
     public function testRemoveTask(): void
     {
 
@@ -166,13 +211,13 @@ class UserTest extends WebTestCase
         $testdate = new DateTimeImmutable;
 
         $newtask = (new Task())
-        ->setTitle('newtask')
-        ->setContent('newtask content')
-        ->setCreatedAt($testdate)
-        ->setIsDone(0);
+            ->setTitle('newtask')
+            ->setContent('newtask content')
+            ->setCreatedAt($testdate)
+            ->setIsDone(0);
         $testuser->addTask($newtask);
 
-        $countTesttasksBefore = count($testuser->getTasks()) - 1;
+        $countTesttasksBefore = (count($testuser->getTasks()) - 1);
 
         // When
         $testuser->removeTask($newtask);

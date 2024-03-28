@@ -27,6 +27,7 @@ class TaskController extends AbstractController
 
     }
 
+
     /**
      * Summary of list
      *
@@ -39,6 +40,7 @@ class TaskController extends AbstractController
         return $this->render('task/list.html.twig', ['tasks' => $this->taskService->getAllTasks()]);
 
     }
+
 
     /**
      * Summary of create
@@ -59,7 +61,7 @@ class TaskController extends AbstractController
 
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() === true && $form->isValid() === true) {
                 $task->setCreatedAt(new DateTimeImmutable());
                 $task->setUser($user);
                 $this->taskService->saveTask($task);
@@ -75,6 +77,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('app_login');
 
     }
+
 
     /**
      * Summary of edit
@@ -94,7 +97,7 @@ class TaskController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() === true && $form->isValid() === true) {
             $this->taskService->saveTask($task);
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
@@ -110,6 +113,7 @@ class TaskController extends AbstractController
         );
 
     }
+
 
     /**
      * Summary of taskIsDone
@@ -130,6 +134,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
 
     }
+
 
     /**
      * Summary of deleteTask

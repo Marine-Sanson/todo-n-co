@@ -10,6 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
 
+
     /**
      * Summary of login
      *
@@ -35,6 +36,7 @@ class SecurityController extends AbstractController
         );
 
     }
+
 
     /**
      * Summary of logout

@@ -62,7 +62,7 @@ class TaskVoter extends Voter
      *
      * @return bool
      */
-    protected function supports(string $attribute, mixed $subject ): bool
+    protected function supports(string $attribute, mixed $subject): bool
     {
 
         // If the attribute isn't one we support, return false.
@@ -89,7 +89,7 @@ class TaskVoter extends Voter
      *
      * @return bool
      */
-    protected function voteOnAttribute(string $attribute, mixed $subject , TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
 
         $user = $token->getUser();
@@ -99,7 +99,7 @@ class TaskVoter extends Voter
             return false;
         }
 
-        $task = $subject; 
+        $task = $subject;
 
         return match ($attribute) {
             self::EDIT => $this->canEdit($task, $user),

@@ -4,13 +4,16 @@ namespace App\Tests\Form;
 
 use App\Entity\Task;
 use App\Form\TaskType;
-use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 
 class TaskTypeTest extends TypeTestCase
 {
+
+
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
 
@@ -38,10 +41,16 @@ class TaskTypeTest extends TypeTestCase
 
         // check that $model was modified as expected when the form was submitted
         $this->assertEquals($expected, $entity);
+
     }
 
+
+    /**
+     * Function testCustomFormView
+     */
     public function testCustomFormView(): void
     {
+
         $formData = (new Task())
         // ... prepare the data as you need
             ->setTitle('titre test')
@@ -54,6 +63,8 @@ class TaskTypeTest extends TypeTestCase
 
         $this->assertArrayHasKey('data', $view->vars);
         $this->assertSame($formData, $view->vars['data']);
+
     }
+
 
 }

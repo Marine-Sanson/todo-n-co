@@ -29,6 +29,7 @@ class TaskType extends AbstractType
 
     }
 
+
     /**
      * Summary of configureOptions
      *

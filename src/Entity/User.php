@@ -19,7 +19,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Summary of id
      *
-     * @var int|null
+     * @var integer|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -90,6 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * Summary of function getId
      *
@@ -101,6 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
 
     }
+
 
     /**
      * Summary of function setId
@@ -118,6 +120,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * Summary of function getUsername
      *
@@ -129,6 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->username;
 
     }
+
 
     /**
      * Summary of function setUsername
@@ -146,6 +150,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * Summary of function getEmail
      *
@@ -157,6 +162,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
 
     }
+
 
     /**
      * Summary of function setEmail
@@ -174,6 +180,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * A visual identifier that represents this user.
      *
@@ -185,6 +192,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
 
     }
+
 
     /**
      * @see UserInterface
@@ -202,6 +210,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * @param list<string> $roles
      */
@@ -214,6 +223,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * @see PasswordAuthenticatedUserInterface
      */
@@ -223,6 +233,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
 
     }
+
 
     /**
      * Summary of function setPassword
@@ -240,6 +251,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * @see UserInterface
      */
@@ -251,6 +263,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     }
 
+
     /**
      * @return Collection<int, Task>
      */
@@ -260,6 +273,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->tasks;
 
     }
+
 
     /**
      * Summary of function addTask
@@ -271,7 +285,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function addTask(Task $task): static
     {
 
-        if (!$this->tasks->contains($task)) {
+        if ($this->tasks->contains($task) === false) {
             $this->tasks->add($task);
             $task->setUser($this);
         }
@@ -291,13 +305,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeTask(Task $task): static
     {
 
-        if ($this->tasks->removeElement($task)) {
+        if ($this->tasks->removeElement($task) === true) {
             // set the owning side to null (unless already changed)
-
             if ($task->getUser() === $this) {
                 $task->setUser(null);
             }
-
         }
 
         return $this;

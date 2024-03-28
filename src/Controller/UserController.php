@@ -26,6 +26,7 @@ class UserController extends AbstractController
 
     }
 
+
     /**
      * Summary of list
      *
@@ -43,6 +44,7 @@ class UserController extends AbstractController
 
     }
 
+
     /**
      * Summary of create
      *
@@ -59,7 +61,7 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() === true && $form->isValid() === true) {
             $role = $this->userService->dealRole($form->get("roles")->getData());
             $user->setRoles([$role]);
 
@@ -73,6 +75,7 @@ class UserController extends AbstractController
         return $this->render('user/create.html.twig', ['form' => $form->createView()]);
 
     }
+
 
     /**
      * Summary of edit
@@ -90,7 +93,7 @@ class UserController extends AbstractController
 
         $userForm->handleRequest($request);
 
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
+        if ($userForm->isSubmitted() === true && $userForm->isValid() === true) {
             $role = $this->userService->dealRole($userForm->get("roles")->getData());
             $user->setRoles([$role]);
 

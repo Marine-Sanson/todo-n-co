@@ -14,12 +14,31 @@ set_exception_handler([new ErrorHandler(), 'handleException']);
 class UserServiceTest extends WebTestCase
 {
 
+    /**
+     * Summary of userService
+     *
+     * @var UserService
+     */
     private UserService $userService;
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
+    /**
+     * Summary of userPasswordHasher
+     *
+     * @var UserPasswordHasherInterface
+     */
     private UserPasswordHasherInterface $userPasswordHasher;
 
+
+    /**
+     * Function setUp
+     */
     protected function setUp(): void
     {
 
@@ -30,10 +49,15 @@ class UserServiceTest extends WebTestCase
 
         $this->userPasswordHasher = static::$kernel->getContainer()->get('security.user_password_hasher');
 
-        $this->userService = new UserService($this->entityManager->getRepository(User::class), $this->userPasswordHasher);
+        $this->userService = static::$kernel->getContainer()
+            ->get('App\Service\UserService');
 
     }
 
+
+    /**
+     * Function testGetAllUsers
+     */
     public function testGetAllUsers(): void
     {
 
@@ -47,6 +71,10 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testRegister
+     */
     public function testRegister(): void
     {
 
@@ -55,7 +83,7 @@ class UserServiceTest extends WebTestCase
             ->setUsername('newtestuser')
             ->setEmail('newtestuser@ex.com')
             ->setRoles(['ROLE_ADMIN']);
-    
+
         $password = 'password';
 
         $user->setPassword(
@@ -75,6 +103,10 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testEditUser
+     */
     public function testEditUser(): void
     {
 
@@ -92,9 +124,13 @@ class UserServiceTest extends WebTestCase
 
     }
 
+
+    /**
+     * Function testDeleteUser
+     */
     public function testDeleteUser(): void
     {
-    
+
         // Given
         $user = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
 
@@ -105,14 +141,18 @@ class UserServiceTest extends WebTestCase
         $userDeleted = $this->entityManager->getRepository(User::class)->findOneByEmail('newtestuser@ex.com');
         $this->assertEmpty($userDeleted);
 
-        
     }
 
+
+    /**
+     * Function tearDown
+     */
     protected function tearDown(): void
     {
 
         $this->entityManager->close();
 
     }
+
 
 }

@@ -13,7 +13,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class TaskFixtures extends Fixture
 {
 
-
     /**
      * Summary of faker
      *
@@ -31,6 +30,7 @@ class TaskFixtures extends Fixture
     {
 
     }
+
 
     /**
      * Summary of load
