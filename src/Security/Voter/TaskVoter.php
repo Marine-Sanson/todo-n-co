@@ -99,7 +99,7 @@ class TaskVoter extends Voter
             return false;
         }
 
-        $task = $subject; 
+        $task = $subject;
 
         return match ($attribute) {
             self::EDIT => $this->canEdit($task, $user),

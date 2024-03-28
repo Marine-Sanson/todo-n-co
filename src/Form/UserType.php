@@ -22,7 +22,7 @@ class UserType extends AbstractType
      *
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options=null): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
         $builder

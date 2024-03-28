@@ -13,7 +13,7 @@ class TaskTest extends KernelTestCase
 {
 
     private EntityManager $entityManager;
-    
+
     private UserPasswordHasherInterface $userPasswordHasher;
 
 
@@ -163,10 +163,10 @@ class TaskTest extends KernelTestCase
         );
 
         $task = (new Task())
-        ->setCreatedAt(new DateTimeImmutable())
-        ->setTitle('task 2 title')
-        ->setContent('task content')
-        ->setIsDone(false);
+            ->setCreatedAt(new DateTimeImmutable())
+            ->setTitle('task 2 title')
+            ->setContent('task content')
+            ->setIsDone(false);
 
         // When
         $task->setUser($user);

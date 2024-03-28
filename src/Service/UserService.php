@@ -19,7 +19,7 @@ class UserService
         private readonly UserRepository $userRepository,
         private readonly UserPasswordHasherInterface $userPasswordHasher
     ) {
-    
+
     }
 
     /**

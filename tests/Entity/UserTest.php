@@ -166,10 +166,10 @@ class UserTest extends WebTestCase
         $testdate = new DateTimeImmutable;
 
         $newtask = (new Task())
-        ->setTitle('newtask')
-        ->setContent('newtask content')
-        ->setCreatedAt($testdate)
-        ->setIsDone(0);
+            ->setTitle('newtask')
+            ->setContent('newtask content')
+            ->setCreatedAt($testdate)
+            ->setIsDone(0);
         $testuser->addTask($newtask);
 
         $countTesttasksBefore = (count($testuser->getTasks()) - 1);

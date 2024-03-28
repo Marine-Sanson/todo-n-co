@@ -55,7 +55,7 @@ class UserServiceTest extends WebTestCase
             ->setUsername('newtestuser')
             ->setEmail('newtestuser@ex.com')
             ->setRoles(['ROLE_ADMIN']);
-    
+
         $password = 'password';
 
         $user->setPassword(

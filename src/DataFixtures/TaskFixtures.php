@@ -19,6 +19,7 @@ class TaskFixtures extends Fixture
      *
      * @var Generator
      */
+
     public Generator $faker;
 
 

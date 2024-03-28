@@ -53,13 +53,13 @@ class TaskController extends AbstractController
 
         $user = $this->getUser();
 
-        if ($user) {
+        if (isset($user)) {
             $task = new Task();
             $form = $this->createForm(TaskType::class, $task);
 
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() === true && $form->isValid() === true) {
                 $task->setCreatedAt(new DateTimeImmutable());
                 $task->setUser($user);
                 $this->taskService->saveTask($task);
@@ -94,7 +94,7 @@ class TaskController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() === true && $form->isValid() === true) {
             $this->taskService->saveTask($task);
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');

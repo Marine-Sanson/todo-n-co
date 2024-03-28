@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
      *
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options=null): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
         $builder

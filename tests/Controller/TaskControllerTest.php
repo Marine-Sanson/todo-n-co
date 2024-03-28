@@ -34,7 +34,7 @@ class TaskControllerTest extends WebTestCase
         $this->userRepository = $this->container->get(UserRepository::class);
 
         $this->taskRepository = $this->container->get(TaskRepository::class);
-        
+
         $this->urlGenerator = $this->client->getContainer()->get('router.default');
 
     }
@@ -96,10 +96,10 @@ class TaskControllerTest extends WebTestCase
 
         $oldCount = count($this->taskRepository->findAll());
 
-        $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_create'));
+        $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_create'));
 
         $this->assertResponseRedirects('/login');
-        $crawler = $this->client->followRedirect();
+        $this->client->followRedirect();
 
         $allTasks = $this->taskRepository->findAll();
 
@@ -150,7 +150,7 @@ class TaskControllerTest extends WebTestCase
         $this->client->loginUser($user);
 
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_toggle', ['id' => $task->getId()]));
-        
+
         $this->assertResponseRedirects('/tasks');
 
         $this->client->followRedirect();

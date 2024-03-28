@@ -18,6 +18,7 @@ class AppFixtures extends Fixture
      *
      * @var Generator
      */
+
     public Generator $faker;
 
     /**
@@ -77,7 +78,6 @@ class AppFixtures extends Fixture
         $manager->persist($testuser);
         $manager->flush();
 
-
         for ($i = 0; $i < 11; $i++) {
             $domain = $this->faker->domainWord();
             $tld = $this->faker->tld();
@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
             $this->addReference('user'.$i, $user);
             $manager->persist($user);
             $manager->flush();
-        } // end for
+        }// end for
 
     }
 
