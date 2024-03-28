@@ -15,7 +15,7 @@ class Task
     /**
      * Summary of id
      *
-     * @var int|null
+     * @var integer|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]

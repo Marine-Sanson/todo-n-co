@@ -11,6 +11,9 @@ class UserTypeTest extends KernelTestCase
 {
 
 
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
 

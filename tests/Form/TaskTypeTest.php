@@ -11,6 +11,9 @@ class TaskTypeTest extends TypeTestCase
 {
 
 
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
 
@@ -42,6 +45,9 @@ class TaskTypeTest extends TypeTestCase
     }
 
 
+    /**
+     * Function testCustomFormView
+     */
     public function testCustomFormView(): void
     {
 

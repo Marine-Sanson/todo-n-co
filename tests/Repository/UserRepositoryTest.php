@@ -10,11 +10,24 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserRepositoryTest extends KernelTestCase
 {
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
+    /**
+     * Summary of userPasswordHasher
+     *
+     * @var UserPasswordHasherInterface
+     */
     private UserPasswordHasherInterface $userPasswordHasher;
 
 
+    /**
+     * Function setUp
+     */
     protected function setUp(): void
     {
 
@@ -27,6 +40,9 @@ class UserRepositoryTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testFindAll
+     */
     public function testFindAll(): void
     {
 
@@ -41,6 +57,9 @@ class UserRepositoryTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testSaveUser
+     */
     public function testSaveUser(): void
     {
 
@@ -70,6 +89,9 @@ class UserRepositoryTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testUpgradePassword
+     */
     public function testUpgradePassword(): void
     {
 
@@ -86,6 +108,9 @@ class UserRepositoryTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testDeleteUser
+     */
     public function testDeleteUser(): void
     {
 
@@ -102,6 +127,9 @@ class UserRepositoryTest extends KernelTestCase
     }
 
 
+    /**
+     * Function tearDown
+     */
     protected function tearDown(): void
     {
 

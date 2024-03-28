@@ -11,6 +11,9 @@ class RegistrationFormTypeTest extends KernelTestCase
 {
 
 
+    /**
+     * Function testSubmitValidData
+     */
     public function testSubmitValidData(): void
     {
 

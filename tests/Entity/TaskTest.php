@@ -12,8 +12,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class TaskTest extends KernelTestCase
 {
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
+    /**
+     * Summary of userPasswordHasher
+     *
+     * @var UserPasswordHasherInterface
+     */
     private UserPasswordHasherInterface $userPasswordHasher;
 
 
@@ -153,6 +163,9 @@ class TaskTest extends KernelTestCase
     }
 
 
+    /**
+     * Summary of function testSetUser
+     */
     public function testSetUser(): void
     {
 

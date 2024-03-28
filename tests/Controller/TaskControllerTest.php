@@ -14,17 +14,45 @@ use Symfony\Component\DependencyInjection\Container;
 class TaskControllerTest extends WebTestCase
 {
 
+    /**
+     * Summary of client
+     *
+     * @var KernelBrowser
+     */
     private KernelBrowser $client;
 
+    /**
+     * Summary of userRepository
+     *
+     * @var UserRepository
+     */
     private UserRepository $userRepository;
 
+    /**
+     * Summary of taskRepository
+     *
+     * @var TaskRepository
+     */
     private TaskRepository $taskRepository;
 
+    /**
+     * Summary of container
+     *
+     * @var Container
+     */
     private Container $container;
 
+    /**
+     * Summary of urlGenerator
+     *
+     * @var Router
+     */
     private Router $urlGenerator;
 
 
+    /**
+     * Summary of function setUp
+     */
     protected function setUp(): void
     {
 
@@ -41,6 +69,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testList
+     */
     public function testList(): void
     {
 
@@ -62,6 +93,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testCreateTask
+     */
     public function testCreateTask()
     {
 
@@ -94,6 +128,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testCreateTaskWithNoOneConnected
+     */
     public function testCreateTaskWithNoOneConnected(): void
     {
 
@@ -112,6 +149,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testEditTask
+     */
     public function testEditTask()
     {
 
@@ -143,6 +183,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testtaskIsDone
+     */
     public function testtaskIsDone(): void
     {
 
@@ -165,6 +208,9 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Summary of function testDeleteTask
+     */
     public function testDeleteTask(): void
     {
 

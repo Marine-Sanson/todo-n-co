@@ -8,6 +8,9 @@ class DefaultControllerTest extends WebTestCase
 {
 
 
+    /**
+     * Summary of function testIndex
+     */
     public function testIndex(): void
     {
 

@@ -16,11 +16,24 @@ set_exception_handler([new ErrorHandler(), 'handleException']);
 class TaskServiceTest extends KernelTestCase
 {
 
+    /**
+     * Summary of taskService
+     *
+     * @var TaskService
+     */
     private TaskService $taskService;
 
+    /**
+     * Summary of entityManager
+     *
+     * @var EntityManager
+     */
     private EntityManager $entityManager;
 
 
+    /**
+     * Function setUp
+     */
     protected function setUp(): void
     {
 
@@ -41,6 +54,9 @@ class TaskServiceTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testGetAllTasks
+     */
     public function testGetAllTasks(): void
     {
 
@@ -55,6 +71,9 @@ class TaskServiceTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testSaveTask
+     */
     public function testSaveTask(): void
     {
 
@@ -74,6 +93,9 @@ class TaskServiceTest extends KernelTestCase
     }
 
 
+    /**
+     * Function testDeleteTask
+     */
     public function testDeleteTask(): void
     {
 
@@ -92,6 +114,9 @@ class TaskServiceTest extends KernelTestCase
     }
 
 
+    /**
+     * Function tearDown
+     */
     protected function tearDown(): void
     {
 
